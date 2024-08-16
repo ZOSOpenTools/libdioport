@@ -2,4 +2,4 @@
 
 # libdio
 
-Dataset I/O
+A zopen build recipe for https://github.com/ZOSOpenTools/libdioport
