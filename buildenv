@@ -1,0 +1,35 @@
+export ZOPEN_TYPE="BARE"
+
+export ZOPEN_NAME="libdio"
+export ZOPEN_DEPS="make"
+
+export ZOPEN_CONFIGURE="skip"
+export ZOPEN_MAKE="zopen_build"
+export ZOPEN_INSTALL="zopen_install"
+export ZOPEN_SRC_DIR="libdio"
+
+
+zopen_build()
+{
+  export PATH=/nfsmnts/bpidrivers/zosv2r4/dataset/:$PATH
+  ./build
+}
+export ZOPEN_CATEGORIES="development core"
+
+zopen_check_results()
+{
+  dir="$1"
+  pfx="$2"
+  chk="$1/$2_check.log"
+
+  # Echo the following information to gauge build health
+  echo "actualFailures:0"
+  echo "totalTests:1"
+  echo "expectedFailures:0"
+  echo "expectedTotalTests:1"
+}
+
+zopen_get_version()
+{
+  echo "1.0.0"
+}
