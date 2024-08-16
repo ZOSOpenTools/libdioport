@@ -1,21 +1,14 @@
-export ZOPEN_TYPE="BARE"
-
-export ZOPEN_NAME="libdio"
-export ZOPEN_DEPS="make"
+export ZOPEN_BUILD_LINE="DEV"
+export ZOPEN_DEV_URL="https://github.com/ZOSOpenTools/libdio.git"
+export ZOPEN_DEV_DEPS="make cjson coreutils diffutils"
+export ZOPEN_MAKE_MINIMAL=Y
+export ZOPEN_INSTALL_OPTS="install PREFIX=\$ZOPEN_INSTALL_DIR"
 
 export ZOPEN_CONFIGURE="skip"
-export ZOPEN_MAKE="zopen_build"
-export ZOPEN_INSTALL="zopen_install"
-export ZOPEN_SRC_DIR="libdio"
 
-
-zopen_build()
-{
-  export PATH=/nfsmnts/bpidrivers/zosv2r4/dataset/:$PATH
-  ./build
-}
 export ZOPEN_CATEGORIES="development core"
 
+#TODO:
 zopen_check_results()
 {
   dir="$1"
@@ -29,7 +22,19 @@ zopen_check_results()
   echo "expectedTotalTests:1"
 }
 
+zopen_append_to_env()
+{
+cat <<ZZ
+if [ ! -z "\$ZOPEN_IN_ZOPEN_BUILD" ]; then
+  export ZOPEN_EXTRA_CFLAGS="\${ZOPEN_EXTRA_CFLAGS} -I\$PWD/include"
+  export ZOPEN_EXTRA_CXXFLAGS="\${ZOPEN_EXTRA_CXXFLAGS} -I\$PWD/include"
+  export ZOPEN_EXTRA_LDFLAGS="\${ZOPEN_EXTRA_LDFLAGS} -L\$PWD/lib"
+  export ZOPEN_EXTRA_LIBS="\${ZOPEN_EXTRA_LIBS} -ldio"
+fi
+ZZ
+}
+
 zopen_get_version()
 {
-  echo "1.0.0"
+  echo "0.0.1"
 }
