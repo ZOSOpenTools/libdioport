@@ -2,9 +2,12 @@ export ZOPEN_BUILD_LINE="DEV"
 export ZOPEN_DEV_URL="https://github.com/ZOSOpenTools/libdio.git"
 export ZOPEN_DEV_DEPS="make cjson coreutils diffutils"
 export ZOPEN_MAKE_MINIMAL=Y
+export ZOPEN_CHECK_MINIMAL=Y
 export ZOPEN_INSTALL_OPTS="install PREFIX=\$ZOPEN_INSTALL_DIR"
 
 export ZOPEN_CONFIGURE="skip"
+# Avoid zoslib
+export ZOPEN_DONT_ADD_ZOSLIB_DEP=1
 
 export ZOPEN_CATEGORIES="development core"
 
