@@ -2,4 +2,4 @@
 
 # libdio
 
-A zopen build recipe for https://github.com/ZOSOpenTools/libdioport
+A zopen build recipe for https://github.com/ZOSOpenTools/libdio
