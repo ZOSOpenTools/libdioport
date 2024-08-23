@@ -1,11 +1,21 @@
 export ZOPEN_BUILD_LINE="DEV"
 export ZOPEN_DEV_URL="https://github.com/ZOSOpenTools/libdio.git"
-export ZOPEN_DEV_DEPS="make cjson coreutils diffutils"
+export ZOPEN_DEV_DEPS="make cjson coreutils diffutils python"
 export ZOPEN_MAKE_MINIMAL=Y
+export ZOPEN_MAKE="zopen_build"
 export ZOPEN_CHECK_MINIMAL=Y
 export ZOPEN_INSTALL_OPTS="install PREFIX=\$ZOPEN_INSTALL_DIR"
 
 export ZOPEN_CONFIGURE="skip"
+
+zopen_build() 
+{
+  export CJSON_INCLUDE_DIR=$CJSON_HOME/include/
+  export CJSON_LIBRARY=$CJSON_HOME/lib/libcjson.a
+
+  make 
+}
+
 # Avoid zoslib
 export ZOPEN_DONT_ADD_ZOSLIB_DEP=1
 
@@ -39,5 +49,5 @@ ZZ
 
 zopen_get_version()
 {
-  echo "0.0.1"
+  echo "0.1.0"
 }
